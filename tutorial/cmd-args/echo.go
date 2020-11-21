@@ -8,8 +8,8 @@ import (
 
 func echo(args []string) {
 	var s, sep string // will be initialized as an empty string ("")
-	for i := 1; i < len(os.Args); i++ {
-		s += sep + os.Args[i]
+	for i := 1; i < len(args); i++ {
+		s += sep + args[i]
 		sep = " "
 	}
 
@@ -19,7 +19,7 @@ func echo(args []string) {
 func echoSlice(args []string) {
 	s, sep := "", ""
 	// range returns a tuple (index, value of the index inside the array)
-	for _, arg := range os.Args[1:] { // underscore is used because we don't need the index for the logic
+	for _, arg := range args[1:] { // underscore is used because we don't need the index for the logic
 		s += sep + arg
 		sep = " "
 	}
