@@ -4,6 +4,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 )
 
 func echo(args []string) {
@@ -27,7 +28,12 @@ func echoSlice(args []string) {
 	fmt.Println(s)
 }
 
+func echoJoin(args []string) {
+	fmt.Println(strings.Join(args[1:], " "))
+}
+
 func main() {
 	echo(os.Args)
 	echoSlice(os.Args)
+	echoJoin(os.Args)
 }
