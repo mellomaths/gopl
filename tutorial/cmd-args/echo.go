@@ -32,8 +32,13 @@ func echoJoin(args []string) {
 	fmt.Println(strings.Join(args[1:], " "))
 }
 
+func echoNotFormatted(args []string) {
+	fmt.Println(args[1:])
+}
+
 func main() {
 	echo(os.Args)
 	echoSlice(os.Args)
 	echoJoin(os.Args)
+	echoNotFormatted(os.Args)
 }
