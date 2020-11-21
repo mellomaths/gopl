@@ -8,8 +8,8 @@ import (
 )
 
 func echo(args []string) {
-	var s, sep string // will be initialized as an empty string ("")
-	for i := 1; i < len(args); i++ {
+	var s, sep string                // will be initialized as an empty string ("")
+	for i := 1; i < len(args); i++ { // started on 1 because the first element is the name of this module
 		s += sep + args[i]
 		sep = " "
 	}
