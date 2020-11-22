@@ -7,6 +7,17 @@ import (
 	"os"
 )
 
+// OpenFile uses os.Open() to open a file
+func openFile(filename string) *os.File {
+	f, err := os.Open(filename)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "uniq: %v\n", err)
+		return nil
+	}
+
+	return f
+}
+
 func countLines(f *os.File, counts map[string]int) {
 	input := bufio.NewScanner(f)
 	// Note: ignores potential errors of input.Err()
@@ -32,9 +43,8 @@ func main() {
 	}
 
 	for _, filename := range files {
-		f, err := os.Open(filename)
-		if err != nil {
-			fmt.Fprintf(os.Stderr, "uniq: %v\n", err)
+		f := openFile(filename)
+		if f == nil {
 			continue
 		}
 
