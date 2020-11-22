@@ -4,7 +4,9 @@ package main
 import (
 	"bufio"
 	"fmt"
+	"io/ioutil"
 	"os"
+	"strings"
 )
 
 // OpenFile uses os.Open() to open a file
@@ -16,6 +18,17 @@ func openFile(filename string) *os.File {
 	}
 
 	return f
+}
+
+// ReadFile uses ioutil.ReadFile() to read a file
+func readFile(filename string) []byte {
+	data, err := ioutil.ReadFile(filename)
+	if err != nil {
+		fmt.Fprintf(os.Stderr, "uniq: %v\n", err)
+		return nil
+	}
+
+	return data
 }
 
 func countLines(f *os.File, counts map[string]int) {
@@ -50,6 +63,18 @@ func main() {
 
 		countLines(f, counts)
 		f.Close()
+	}
+
+	printDuplicatedLines(counts)
+
+	counts = make(map[string]int) // Resets the map to count everything again
+	for _, filename := range files {
+		data := readFile(filename)
+		stringData := string(data)               // Transformes []byte to string
+		lines := strings.Split(stringData, "\n") // Split the string on every line
+		for _, line := range lines {
+			counts[line]++
+		}
 	}
 
 	printDuplicatedLines(counts)
