@@ -11,6 +11,7 @@ func main() {
 	counts := make(map[string]int)
 	input := bufio.NewScanner(os.Stdin)
 
+	// Note: ignores potential errors of input.Err()
 	for input.Scan() {
 		line := input.Text()
 		if len(line) == 0 {
@@ -20,7 +21,6 @@ func main() {
 		counts[line]++
 	}
 
-	// Note: ignores potential errors of input.Err()
 	for line, n := range counts {
 		if n > 1 {
 			fmt.Printf("%d\t%s\n", n, line)
