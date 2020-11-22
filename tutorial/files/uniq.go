@@ -76,7 +76,9 @@ func main() {
 		stringData := string(data)               // Transformes []byte to string
 		lines := strings.Split(stringData, "\n") // Split the string on every line
 		for _, line := range lines {
-			counts[line]++
+			if len(line) != 0 {
+				counts[line]++
+			}
 		}
 	}
 
