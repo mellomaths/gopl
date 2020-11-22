@@ -31,15 +31,6 @@ func readFile(filename string) []byte {
 	return data
 }
 
-func countLines(f *os.File, counts map[string]int) {
-	input := bufio.NewScanner(f)
-	// Note: ignores potential errors of input.Err()
-	for input.Scan() {
-		line := input.Text()
-		counts[line]++
-	}
-}
-
 func printDuplicatedLines(counts map[string]int) {
 	for line, n := range counts {
 		if n > 1 {
@@ -62,7 +53,12 @@ func main() {
 			continue
 		}
 
-		countLines(f, counts)
+		input := bufio.NewScanner(f)
+		// Note: ignores potential errors of input.Err()
+		for input.Scan() {
+			line := input.Text()
+			counts[line]++
+		}
 		f.Close()
 	}
 
