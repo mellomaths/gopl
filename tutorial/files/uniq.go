@@ -40,6 +40,8 @@ func printDuplicatedLines(counts map[string]int) {
 }
 
 func main() {
+	// TODO: Store the name of the file that the line appeared and show a list of files that duplicated certain line
+
 	counts := make(map[string]int)
 	files := os.Args[1:]
 	if len(files) == 0 {
