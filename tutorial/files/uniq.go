@@ -55,6 +55,7 @@ func main() {
 		fmt.Println("No file provided!")
 	}
 
+	fmt.Println("Executing with os.Open()")
 	for _, filename := range files {
 		f := openFile(filename)
 		if f == nil {
@@ -68,6 +69,8 @@ func main() {
 	printDuplicatedLines(counts)
 
 	counts = make(map[string]int) // Resets the map to count everything again
+
+	fmt.Println("Executing with ioutil.ReadFile()")
 	for _, filename := range files {
 		data := readFile(filename)
 		stringData := string(data)               // Transformes []byte to string
