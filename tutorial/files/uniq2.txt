@@ -1,0 +1,12 @@
+Julia
+R
+Ruby
+Go
+Python
+C
+Java
+JavaScript
+Python
+Go
+Haskell
+Ruby
